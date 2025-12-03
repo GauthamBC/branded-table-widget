@@ -7,7 +7,7 @@
 </head>
 <body style="margin:0;">
 
-<section class="vi-table-embed brand-actionnetwork" style="max-width:960px;margin:16px auto;
+<section class="vi-table-embed brand-canadasb" style="max-width:960px;margin:16px auto;
          font:14px/1.35 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
          color:#181a1f;background:#ffffff;border:1px solid #DCEFE6;border-radius:12px;
          box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px rgba(0,0,0,.09);">
@@ -33,7 +33,6 @@
       --scroll-thumb-hover:var(--brand-600);
 
       --footer-border:color-mix(in oklab,var(--brand-500) 35%, transparent);
-      --header-title-color:var(--brand-700);
     }
 
     /* Brand overrides – reuse palettes from the supermoon widget */
@@ -42,7 +41,7 @@
       --brand-100:#FFE8AA;
       --brand-300:#FFE8AA;
       --brand-500:#F2C23A;
-      --brand-600:#D9A72A;  /* embed + logo accent */
+      --brand-600:#D9A72A;   /* matches embed button + requested yellow */
       --brand-700:#B9851A;
       --brand-900:#111111;
       --header-bg:var(--brand-500);
@@ -50,7 +49,6 @@
       --hover:var(--brand-100);
       --scroll-thumb:var(--brand-600);
       --footer-border:color-mix(in oklab,var(--brand-500) 40%, transparent);
-      --header-title-color:var(--brand-600);
     }
 
     .vi-table-embed.brand-canadasb{
@@ -66,7 +64,6 @@
       --hover:var(--brand-100);
       --scroll-thumb:var(--brand-600);
       --footer-border:color-mix(in oklab,var(--brand-600) 40%, transparent);
-      --header-title-color:var(--brand-600);
     }
 
     .vi-table-embed.brand-rotogrinders{
@@ -82,12 +79,11 @@
       --hover:var(--brand-100);
       --scroll-thumb:var(--brand-600);
       --footer-border:color-mix(in oklab,var(--brand-600) 40%, transparent);
-      --header-title-color:var(--brand-600);
     }
 
     /* Header block (title + subtitle stacked) */
     .vi-table-embed .vi-table-header{
-      padding:10px 16px 10px;
+      padding:10px 16px 8px;
       border-bottom:1px solid var(--brand-100);
       background:linear-gradient(90deg,var(--brand-50),#ffffff);
       display:flex;
@@ -104,14 +100,17 @@
       font-size:clamp(18px,2.3vw,22px);
       font-weight:750;
       color:#111827;
+      display:block;
     }
-    .vi-table-embed .vi-table-header.brand-title .title{
-      color:var(--header-title-color, var(--header-bg));
+    /* Branded title colour – uses brand-600 for every brand */
+    .vi-table-embed .vi-table-header .title.branded{
+      color:var(--brand-600);
     }
     .vi-table-embed .vi-table-header .subtitle{
       margin:0;
       font-size:13px;
       color:#6b7280;
+      display:block;
     }
 
     /* Container for table block */
@@ -248,7 +247,7 @@
     }
 
     /* Body rows – zebra + hover injected here */
-
+    
     #bt-block tbody tr:nth-child(odd){background:var(--stripe);}
     #bt-block tbody tr:nth-child(even){background:#ffffff;}
 
@@ -303,7 +302,7 @@
     }
     .vi-table-embed .footer-inner{
       display:flex;
-      justify-content:space-between;   /* button left, logo right */
+      justify-content:space-between;  /* button left, logo right */
       align-items:center;
       gap:12px;
       position:relative;
@@ -329,7 +328,7 @@
       display:inline-block;
     }
 
-    /* Brand-specific logo recolor */
+    /* Brand-specific logo recolor (Vegas tuned for #D9A72A) */
     .vi-table-embed.brand-actionnetwork .vi-footer img{
       filter:
         brightness(0) saturate(100%)
@@ -337,10 +336,9 @@
         brightness(96%) contrast(92%);
     }
     .vi-table-embed.brand-vegasinsider .vi-footer img{
-      /* tuned toward #D9A72A to match embed button */
       filter:
         brightness(0) saturate(100%)
-        invert(74%) sepia(69%) saturate(878%) hue-rotate(4deg)
+        invert(72%) sepia(63%) saturate(652%) hue-rotate(6deg)
         brightness(95%) contrast(101%);
     }
     .vi-table-embed.brand-canadasb .vi-footer img{
@@ -359,7 +357,7 @@
     @media (max-width: 600px){
       .vi-table-embed .footer-inner{
         flex-direction:row;
-        justify-content:space-between;   /* keep button left, logo right on mobile */
+        justify-content:space-between; /* still opposite ends on mobile */
         gap:8px;
       }
       .vi-table-embed .embed-btn{
@@ -399,8 +397,8 @@
   </style>
 
   <!-- Header -->
-  <div class="vi-table-header ">
-    <span class="title">Table 1</span>
+  <div class="vi-table-header centered">
+    <span class="title branded">Table 1</span>
     <span class="subtitle">Subheading</span>
   </div>
 
@@ -505,8 +503,8 @@
   <div class="vi-footer" role="contentinfo">
     <div class="footer-inner">
       <button id="bt-embed-btn" class="embed-btn" aria-controls="bt-embed-wrapper" aria-expanded="false">🔗 Embed This Table</button>
-      <img src="https://i.postimg.cc/x1nG117r/AN-final2-logo.png"
-           alt="Action Network logo"
+      <img src="https://i.postimg.cc/ZKbrbPCJ/CSB-FN.png"
+           alt="Canada Sports Betting logo"
            width="140" height="auto" loading="lazy" decoding="async" />
       <div id="bt-embed-wrapper" class="embed-wrapper">
         <textarea id="bt-embed-code" readonly>&lt;iframe src="https://GauthamBC.github.io/branded-table-widget/branded_table.html"

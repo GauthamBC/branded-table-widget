@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Table 1</title>
+</head>
+<body style="margin:0;">
+
+<section class="vi-table-embed brand-actionnetwork" style="max-width:960px;margin:16px auto;
+         font:14px/1.35 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+         color:#181a1f;background:#ffffff;border:1px solid #DCEFE6;border-radius:12px;
+         box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px rgba(0,0,0,.09);">
+
+  <style>
+    /* Scope */
+    .vi-table-embed, .vi-table-embed * { box-sizing:border-box; font-family:inherit; }
+
+    .vi-table-embed{
+      --brand-50:#F6FFF9; 
+      --brand-100:#DCF2EB;
+      --brand-300:#BCE5D6;
+      --brand-500:#56C257; 
+      --brand-600:#3FA94B; 
+      --brand-700:#2E8538; 
+      --brand-900:#1F5D28;
+
+      --header-bg:var(--brand-500);
+      --stripe:var(--brand-100);
+      --hover:var(--brand-300);
+      --scroll-track:#f7f8fb;
+      --scroll-thumb:var(--brand-500);
+      --scroll-thumb-hover:var(--brand-600);
+
+      --footer-border:color-mix(in oklab,var(--brand-500) 35%, transparent);
+      --header-title-color:var(--brand-700);
+    }
+
+    /* Brand overrides – reuse palettes from the supermoon widget */
+    .vi-table-embed.brand-vegasinsider{
+      --brand-50:#FFF7DC;
+      --brand-100:#FFE8AA;
+      --brand-300:#FFE8AA;
+      --brand-500:#F2C23A;
+      --brand-600:#D9A72A;  /* embed + logo accent */
+      --brand-700:#B9851A;
+      --brand-900:#111111;
+      --header-bg:var(--brand-500);
+      --stripe:var(--brand-50);
+      --hover:var(--brand-100);
+      --scroll-thumb:var(--brand-600);
+      --footer-border:color-mix(in oklab,var(--brand-500) 40%, transparent);
+      --header-title-color:var(--brand-600);
+    }
+
+    .vi-table-embed.brand-canadasb{
+      --brand-50:#FEF2F2;
+      --brand-100:#FEE2E2;
+      --brand-300:#FECACA;
+      --brand-500:#EF4444;
+      --brand-600:#DC2626;
+      --brand-700:#B91C1C;
+      --brand-900:#7F1D1D;
+      --header-bg:var(--brand-600);
+      --stripe:var(--brand-50);
+      --hover:var(--brand-100);
+      --scroll-thumb:var(--brand-600);
+      --footer-border:color-mix(in oklab,var(--brand-600) 40%, transparent);
+      --header-title-color:var(--brand-600);
+    }
+
+    .vi-table-embed.brand-rotogrinders{
+      --brand-50:#E8F1FF;
+      --brand-100:#D3E3FF;
+      --brand-300:#9ABCF9;
+      --brand-500:#2F7DF3;
+      --brand-600:#0159D1;
+      --brand-700:#0141A1;
+      --brand-900:#011F54;
+      --header-bg:var(--brand-700);
+      --stripe:var(--brand-50);
+      --hover:var(--brand-100);
+      --scroll-thumb:var(--brand-600);
+      --footer-border:color-mix(in oklab,var(--brand-600) 40%, transparent);
+      --header-title-color:var(--brand-600);
+    }
+
+    /* Header block (title + subtitle stacked) */
+    .vi-table-embed .vi-table-header{
+      padding:10px 16px 10px;
+      border-bottom:1px solid var(--brand-100);
+      background:linear-gradient(90deg,var(--brand-50),#ffffff);
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:2px;
+    }
+    .vi-table-embed .vi-table-header.centered{
+      align-items:center;
+      text-align:center;
+    }
+    .vi-table-embed .vi-table-header .title{
+      margin:0;
+      font-size:clamp(18px,2.3vw,22px);
+      font-weight:750;
+      color:#111827;
+    }
+    .vi-table-embed .vi-table-header.brand-title .title{
+      color:var(--header-title-color, var(--header-bg));
+    }
+    .vi-table-embed .vi-table-header .subtitle{
+      margin:0;
+      font-size:13px;
+      color:#6b7280;
+    }
+
+    /* Container for table block */
+    #bt-block, #bt-block * { box-sizing:border-box; }
+    #bt-block{
+      --bg:#ffffff; --text:#1f2937;
+      --gutter: clamp(8px, 4vw, 14px);
+      --gutter-left: 0;
+      --gutter-right: 0; 
+      --edge-pad: 14px;
+      --table-max-h: 500px;
+      --vbar-w: 6px; --vbar-w-hover: 8px;
+
+      padding: 8px var(--gutter);
+      padding-top: 8px;
+    }
+
+    /* Controls layout: header = search + pager (no logo) */
+    #bt-block .dw-controls{
+      display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center;
+      gap:12px; margin:4px 0 10px 0;
+    }
+    #bt-block .left{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-start}
+    #bt-block .right{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+
+    #bt-block .dw-field{position:relative}
+    #bt-block .dw-input,#bt-block .dw-select,#bt-block .dw-btn{
+      font:14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; border-radius:10px; padding:8px 10px; transition:.15s ease;
+    }
+    #bt-block .dw-input,#bt-block .dw-select{
+      background:#fff;
+      border:1px solid var(--brand-700);
+      color:var(--text); box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
+    }
+    #bt-block .dw-input{width:min(320px,100%); padding-right:36px}
+    #bt-block .dw-input::placeholder{color:#9AA4B2}
+    #bt-block .dw-input:focus,#bt-block .dw-select:focus{
+      outline:none; border-color:var(--brand-500);
+      box-shadow:0 0 0 3px color-mix(in oklab,var(--brand-500) 25%,transparent); background:#fff;
+    }
+    #bt-block .dw-select{
+      appearance:none; padding-right:34px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232E8538' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:right 10px center; background-size:14px;
+    }
+    .vi-table-embed.brand-vegasinsider #bt-block .dw-select{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23B9851A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    }
+    .vi-table-embed.brand-canadasb #bt-block .dw-select{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23B91C1C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    }
+    .vi-table-embed.brand-rotogrinders #bt-block .dw-select{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230141A1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    }
+
+    #bt-block .dw-btn{
+      background:var(--brand-500); color:#fff; border:1px solid var(--brand-500); padding-inline:12px; cursor:pointer
+    }
+    #bt-block .dw-btn:hover{background:var(--brand-600); border-color:var(--brand-600)} 
+    #bt-block .dw-btn:active{transform:translateY(1px)}
+    #bt-block .dw-btn[disabled]{background:#fafafa; border-color:#d1d5db; color:#6b7280; opacity:1; cursor:not-allowed; transform:none}
+    #bt-block .dw-status{font:12px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#6b7280}
+    #bt-block .dw-counter{display:none !important;}
+
+    /* Clear button */
+    #bt-block .dw-clear{
+      position:absolute; right:10px; top:50%; translate:0 -50%; width:22px; height:22px; border-radius:9999px; border:0;
+      background:transparent; color:var(--brand-700); cursor:pointer; display:none; align-items:center; justify-content:center;
+    }
+    #bt-block .dw-field.has-value .dw-clear{display:flex}
+    #bt-block .dw-clear:hover{background:var(--brand-100)}
+
+    /* Card & table */
+    #bt-block .dw-card {
+      background: var(--bg);
+      border: 0;
+      box-shadow: none;
+      overflow: hidden;
+      margin: 0;
+      width: 100%;
+    }
+    #bt-block .dw-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    #bt-block .dw-scroll.no-scroll { overflow-x: hidden !important; }
+    #bt-block table.dw-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      background: transparent;
+      min-width: 600px;
+      table-layout: auto;
+    }
+
+    /* Header row */
+    #bt-block thead th{
+      background:var(--header-bg); color:#ffffff; font-weight:700; text-align:center;
+      padding:12px 14px; white-space:nowrap; vertical-align:middle; border:0;
+      transition:background-color .15s, color .15s, box-shadow .15s, transform .05s;
+    }
+    #bt-block thead th.sortable{cursor:pointer; user-select:none}
+    #bt-block thead th.sortable::after{content:"↕"; font-size:12px; opacity:.75; margin-left:8px; color:#ffffff}
+    #bt-block thead th.sortable[data-sort="asc"]::after{content:"▲"}
+    #bt-block thead th.sortable[data-sort="desc"]::after{content:"▼"}
+    #bt-block thead th.sortable:hover,#bt-block thead th.sortable:focus-visible{background:var(--brand-600); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
+    #bt-block .dw-scroll.scrolled thead th{box-shadow:0 6px 10px -6px rgba(0,0,0,.25)}
+    #bt-block thead th.is-sorted{background:var(--brand-700); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
+
+    #bt-block thead th,
+    #bt-block tbody td {
+      padding: 12px 10px;
+      overflow: hidden;
+      text-align:center;
+    }
+    #bt-block thead th { white-space: nowrap; }
+
+    #bt-block tbody td:nth-child(2) {
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      min-width: 100px;
+      max-width: 220px;
+      line-height: 1.3;
+    }
+    #bt-block tbody td {
+      background-clip: padding-box;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    /* Body rows – zebra + hover injected here */
+
+    #bt-block tbody tr:nth-child(odd){background:var(--stripe);}
+    #bt-block tbody tr:nth-child(even){background:#ffffff;}
+
+
+    #bt-block tbody tr:hover{
+      background:var(--hover);
+      box-shadow:inset 3px 0 0 var(--brand-500);
+      transform:translateY(-1px);
+      transition:background-color .12s ease, box-shadow .12s ease, transform .08s ease;
+    }
+
+    #bt-block thead th{position:sticky; top:0; z-index:5}
+
+    /* Scrollbars + height */
+    #bt-block .dw-scroll{
+      max-height:var(--table-max-h,360px); overflow-y:auto;
+      -ms-overflow-style:auto; scrollbar-width:thin; scrollbar-color:var(--scroll-thumb) transparent
+    }
+    #bt-block .dw-scroll::-webkit-scrollbar:horizontal{height:0; display:none}
+    #bt-block .dw-scroll::-webkit-scrollbar:vertical{width:var(--vbar-w)}
+    #bt-block .dw-scroll:hover::-webkit-scrollbar:vertical{width:var(--vbar-w-hover)}
+    #bt-block .dw-scroll::-webkit-scrollbar-thumb{
+      background:var(--scroll-thumb); border-radius:9999px; border:2px solid transparent; background-clip:content-box;
+    }
+
+    /* Empty row */
+    #bt-block tr.dw-empty td{text-align:center; color:#6b7280; font-style:italic; padding:18px 14px; background:linear-gradient(0deg,#fff,var(--brand-50))}
+
+    /* Responsiveness */
+    #bt-block .dw-input { width: clamp(160px, 26vw, 320px); }
+    #bt-block .dw-select { min-width: 68px; }
+    #bt-block .dw-btn { padding-inline: 8px; }
+
+    @media (max-width: 600px){
+      #bt-block .dw-controls{
+        grid-template-columns:minmax(0,1fr) auto;
+        column-gap:8px; row-gap:6px; margin:6px 0 8px;
+      }
+      #bt-block .dw-input{width:100%; padding:6px 24px 6px 10px; height:34px; font-size:13px;}
+      #bt-block .dw-clear{width:20px; height:20px;}
+      #bt-block thead th{ font-size:13px; line-height:1.2; }
+      #bt-block .dw-select{min-width:68px; height:32px; padding:6px 22px 6px 8px; font-size:13px;}
+      #bt-block .dw-btn{width:32px; height:32px; padding:0; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;}
+    }
+
+    /* ========= Footer with logo + embed button ======== */
+    .vi-table-embed .vi-footer {
+      display:block;
+      padding:10px 14px 8px;
+      border-top:1px solid var(--footer-border);
+      background:linear-gradient(90deg,var(--brand-50),#ffffff);
+    }
+    .vi-table-embed .footer-inner{
+      display:flex;
+      justify-content:space-between;   /* button left, logo right */
+      align-items:center;
+      gap:12px;
+      position:relative;
+    }
+    .vi-table-embed .embed-btn {
+      background: var(--brand-600);
+      color: #fff;
+      border: 1px solid var(--brand-600);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font: 13px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      cursor: pointer;
+      transition: .2s ease;
+      white-space:nowrap;
+    }
+    .vi-table-embed .embed-btn:hover {
+      background: var(--brand-700);
+      border-color: var(--brand-700);
+    }
+    .vi-table-embed .vi-footer img{
+      height: 38px;
+      width:auto;
+      display:inline-block;
+    }
+
+    /* Brand-specific logo recolor */
+    .vi-table-embed.brand-actionnetwork .vi-footer img{
+      filter:
+        brightness(0) saturate(100%)
+        invert(62%) sepia(23%) saturate(1250%) hue-rotate(78deg)
+        brightness(96%) contrast(92%);
+    }
+    .vi-table-embed.brand-vegasinsider .vi-footer img{
+      /* tuned toward #D9A72A to match embed button */
+      filter:
+        brightness(0) saturate(100%)
+        invert(74%) sepia(69%) saturate(878%) hue-rotate(4deg)
+        brightness(95%) contrast(101%);
+    }
+    .vi-table-embed.brand-canadasb .vi-footer img{
+      filter:
+        brightness(0) saturate(100%)
+        invert(32%) sepia(85%) saturate(2386%) hue-rotate(347deg)
+        brightness(96%) contrast(104%);
+    }
+    .vi-table-embed.brand-rotogrinders .vi-footer img{
+      filter:
+        brightness(0) saturate(100%)
+        invert(23%) sepia(95%) saturate(1704%) hue-rotate(203deg)
+        brightness(93%) contrast(96%);
+    }
+
+    @media (max-width: 600px){
+      .vi-table-embed .footer-inner{
+        flex-direction:row;
+        justify-content:space-between;   /* keep button left, logo right on mobile */
+        gap:8px;
+      }
+      .vi-table-embed .embed-btn{
+        padding:6px 10px;
+        font-size:12px;
+      }
+    }
+
+    .vi-table-embed.brand-vegasinsider .vi-footer img{ height:32px; }
+    .vi-table-embed.brand-rotogrinders .vi-footer img{ height:32px; }
+
+    .vi-table-embed .embed-wrapper{
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(620px, calc(100% - 24px));
+      display: none;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fff;
+      color: #111;
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+      z-index: 1000;
+    }
+    .vi-table-embed .embed-wrapper textarea{
+      width:100%; height:90px; font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+      color:#111; background:#fff; padding:8px 10px; border:1px solid #ddd; border-radius:8px; resize:none;
+    }
+    .vi-table-embed #bt-copy-status{ display:none; color:#008000; font-size:13px; margin-top:6px; }
+    .vi-table-embed .embed-wrapper::after{
+      content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-8px;
+      border:8px solid transparent; border-top-color:#fff;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,.08));
+    }
+  </style>
+
+  <!-- Header -->
+  <div class="vi-table-header ">
+    <span class="title">Table 1</span>
+    <span class="subtitle">Subheading</span>
+  </div>
+
+  <!-- Table block -->
+  <div id="bt-block" data-dw="table">
+    <div class="dw-controls">
+      <div class="left">
+        <div class="dw-field">
+          <input type="search" class="dw-input" placeholder="Search table…" aria-label="Search table">
+          <button type="button" class="dw-clear" aria-label="Clear search">×</button>
+        </div>
+        <span class="dw-status dw-counter" aria-live="polite"></span>
+      </div>
+
+      <div class="right">
+        <label class="dw-status" for="bt-size" style="margin-right:4px;">Rows/page</label>
+        <select id="bt-size" class="dw-select">
+          <option value="10" selected>10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="0">All</option>
+        </select>
+        <button class="dw-btn" data-page="prev" aria-label="Previous page">‹</button>
+        <button class="dw-btn" data-page="next" aria-label="Next page">›</button>
+      </div>
+    </div>
+
+    <div class="dw-card">
+      <div class="dw-scroll">
+        <table class="dw-table">
+          <thead>
+            <tr>
+              <th scope="col" data-type="num">Rank</th>
+              <th scope="col" data-type="text">State</th>
+              <th scope="col" data-type="num">Implied Supermoon Viewing Probability (%)</th>
+              <th scope="col" data-type="num">Supermoon Viewing Odds (Moneyline)</th>
+              <th scope="col" data-type="num">Avg. Clear Sky Days (Dec)</th>
+              <th scope="col" data-type="num">Avg. Humidity (Dec)</th>
+              <th scope="col" data-type="num">Avg. Elevation (ft)</th>
+              <th scope="col" data-type="num">Darkness Score (1–5)</th>
+            </tr>
+          </thead>
+          <tbody>
+                        <tr><td>1</td><td>New Mexico</td><td>27.83%</td><td>259</td><td>18.67</td><td>53.33</td><td>5700</td><td>4.24</td></tr>
+            <tr><td>2</td><td>Arizona</td><td>26.70%</td><td>275</td><td>18.4</td><td>51.88</td><td>4100</td><td>4.13</td></tr>
+            <tr><td>3</td><td>Colorado</td><td>25.05%</td><td>299</td><td>16.4</td><td>59.0</td><td>6800</td><td>4.11</td></tr>
+            <tr><td>4</td><td>Nevada</td><td>21.67%</td><td>361</td><td>13.4</td><td>60.7</td><td>5500</td><td>4.4</td></tr>
+            <tr><td>5</td><td>Wyoming</td><td>21.52%</td><td>365</td><td>13.0</td><td>62.75</td><td>6700</td><td>4.33</td></tr>
+            <tr><td>6</td><td>California</td><td>18.69%</td><td>435</td><td>13.85</td><td>66.35</td><td>2900</td><td>4.18</td></tr>
+            <tr><td>7</td><td>Kansas</td><td>17.77%</td><td>463</td><td>14.6</td><td>69.3</td><td>2000</td><td>4.0</td></tr>
+            <tr><td>8</td><td>Hawaii</td><td>17.53%</td><td>470</td><td>14.25</td><td>72.38</td><td>3030</td><td>4.06</td></tr>
+            <tr><td>9</td><td>Texas</td><td>17.22%</td><td>481</td><td>13.73</td><td>67.06</td><td>1700</td><td>3.93</td></tr>
+            <tr><td>10</td><td>Utah</td><td>16.99%</td><td>489</td><td>11.5</td><td>74.5</td><td>6100</td><td>4.26</td></tr>
+            <tr><td>11</td><td>Oklahoma</td><td>16.60%</td><td>502</td><td>14.5</td><td>68.25</td><td>1300</td><td>3.47</td></tr>
+            <tr><td>12</td><td>Nebraska</td><td>16.52%</td><td>505</td><td>13.29</td><td>70.29</td><td>2600</td><td>3.83</td></tr>
+            <tr><td>13</td><td>Virginia</td><td>15.52%</td><td>544</td><td>13.0</td><td>66.5</td><td>950</td><td>3.5</td></tr>
+            <tr><td>14</td><td>North Carolina</td><td>15.47%</td><td>546</td><td>13.8</td><td>69.0</td><td>700</td><td>3.5</td></tr>
+            <tr><td>15</td><td>Florida</td><td>15.32%</td><td>553</td><td>14.73</td><td>73.25</td><td>100</td><td>3.75</td></tr>
+            <tr><td>16</td><td>Arkansas</td><td>15.05%</td><td>564</td><td>13.0</td><td>71.25</td><td>650</td><td>4.0</td></tr>
+            <tr><td>17</td><td>New Hampshire</td><td>14.72%</td><td>579</td><td>12.0</td><td>70.5</td><td>1000</td><td>4.09</td></tr>
+            <tr><td>18</td><td>South Dakota</td><td>14.35%</td><td>597</td><td>11.5</td><td>73.5</td><td>2200</td><td>4.07</td></tr>
+            <tr><td>19</td><td>South Carolina</td><td>14.13%</td><td>608</td><td>13.0</td><td>67.25</td><td>350</td><td>3.0</td></tr>
+            <tr><td>20</td><td>Georgia</td><td>13.93%</td><td>618</td><td>12.67</td><td>69.67</td><td>600</td><td>3.29</td></tr>
+            <tr><td>21</td><td>Missouri</td><td>13.87%</td><td>621</td><td>12.0</td><td>73.0</td><td>800</td><td>4.0</td></tr>
+            <tr><td>22</td><td>Massachusetts</td><td>13.85%</td><td>622</td><td>12.5</td><td>67.0</td><td>500</td><td>3.0</td></tr>
+            <tr><td>23</td><td>Maryland</td><td>13.55%</td><td>638</td><td>12.0</td><td>66.0</td><td>350</td><td>3.0</td></tr>
+            <tr><td>24</td><td>Maine</td><td>13.51%</td><td>640</td><td>11.5</td><td>72.75</td><td>600</td><td>4.09</td></tr>
+            <tr><td>25</td><td>Alabama</td><td>12.87%</td><td>677</td><td>11.75</td><td>72.0</td><td>500</td><td>3.5</td></tr>
+            <tr><td>26</td><td>Tennessee</td><td>12.37%</td><td>708</td><td>11.2</td><td>71.7</td><td>900</td><td>3.29</td></tr>
+            <tr><td>27</td><td>Montana</td><td>12.31%</td><td>712</td><td>7.33</td><td>71.86</td><td>3400</td><td>4.33</td></tr>
+            <tr><td>28</td><td>Alaska</td><td>11.88%</td><td>742</td><td>9.06</td><td>77.85</td><td>1900</td><td>4.59</td></tr>
+            <tr><td>29</td><td>Rhode Island</td><td>11.81%</td><td>747</td><td>12.0</td><td>66.0</td><td>200</td><td>2.0</td></tr>
+            <tr><td>30</td><td>Louisiana</td><td>11.73%</td><td>753</td><td>12.0</td><td>74.75</td><td>100</td><td>3.22</td></tr>
+            <tr><td>31</td><td>Mississippi</td><td>11.71%</td><td>754</td><td>12.0</td><td>73.83</td><td>300</td><td>3.0</td></tr>
+            <tr><td>32</td><td>Idaho</td><td>11.70%</td><td>755</td><td>6.67</td><td>76.0</td><td>5000</td><td>4.25</td></tr>
+            <tr><td>33</td><td>Delaware</td><td>11.26%</td><td>788</td><td>12.0</td><td>68.0</td><td>60</td><td>2.0</td></tr>
+            <tr><td>34</td><td>Connecticut</td><td>11.17%</td><td>795</td><td>11.5</td><td>67.75</td><td>500</td><td>2.0</td></tr>
+            <tr><td>35</td><td>North Dakota</td><td>11.14%</td><td>798</td><td>10.67</td><td>77.0</td><td>1900</td><td>3.17</td></tr>
+            <tr><td>36</td><td>Minnesota</td><td>11.04%</td><td>806</td><td>9.5</td><td>77.4</td><td>1200</td><td>4.06</td></tr>
+            <tr><td>37</td><td>West Virginia</td><td>10.70%</td><td>835</td><td>7.75</td><td>71.88</td><td>1500</td><td>3.89</td></tr>
+            <tr><td>38</td><td>Pennsylvania</td><td>10.57%</td><td>846</td><td>9.0</td><td>70.5</td><td>1100</td><td>3.11</td></tr>
+            <tr><td>39</td><td>Iowa</td><td>10.41%</td><td>861</td><td>10.5</td><td>76.62</td><td>1100</td><td>3.08</td></tr>
+            <tr><td>40</td><td>Illinois</td><td>10.09%</td><td>891</td><td>10.17</td><td>76.0</td><td>600</td><td>3.17</td></tr>
+            <tr><td>41</td><td>Wisconsin</td><td>9.99%</td><td>901</td><td>9.25</td><td>75.88</td><td>1050</td><td>3.4</td></tr>
+            <tr><td>42</td><td>New Jersey</td><td>9.97%</td><td>903</td><td>12.0</td><td>67.0</td><td>250</td><td>1.0</td></tr>
+            <tr><td>43</td><td>Kentucky</td><td>9.67%</td><td>934</td><td>9.0</td><td>72.62</td><td>750</td><td>3.0</td></tr>
+            <tr><td>44</td><td>Vermont</td><td>9.00%</td><td>1011</td><td>6.0</td><td>72.0</td><td>1000</td><td>4.0</td></tr>
+            <tr><td>45</td><td>Oregon</td><td>7.90%</td><td>1166</td><td>5.25</td><td>82.06</td><td>3300</td><td>4.22</td></tr>
+            <tr><td>46</td><td>New York</td><td>7.65%</td><td>1207</td><td>5.6</td><td>70.39</td><td>1000</td><td>3.16</td></tr>
+            <tr><td>47</td><td>Michigan</td><td>6.83%</td><td>1364</td><td>5.14</td><td>78.25</td><td>900</td><td>4.05</td></tr>
+            <tr><td>48</td><td>Ohio</td><td>6.75%</td><td>1381</td><td>6.5</td><td>76.12</td><td>850</td><td>3.0</td></tr>
+            <tr><td>49</td><td>Washington</td><td>6.31%</td><td>1485</td><td>5.5</td><td>83.75</td><td>1700</td><td>4.0</td></tr>
+            <tr><td>50</td><td>Indiana</td><td>5.84%</td><td>1612</td><td>7.75</td><td>77.25</td><td>700</td><td>2.0</td></tr>
+            <tr class="dw-empty" style="display:none;"><td colspan="8">No matches found.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with logo + embed -->
+  <div class="vi-footer" role="contentinfo">
+    <div class="footer-inner">
+      <button id="bt-embed-btn" class="embed-btn" aria-controls="bt-embed-wrapper" aria-expanded="false">🔗 Embed This Table</button>
+      <img src="https://i.postimg.cc/x1nG117r/AN-final2-logo.png"
+           alt="Action Network logo"
+           width="140" height="auto" loading="lazy" decoding="async" />
+      <div id="bt-embed-wrapper" class="embed-wrapper">
+        <textarea id="bt-embed-code" readonly>&lt;iframe src="https://GauthamBC.github.io/branded-table-widget/branded_table.html"
+  title="Table 1"
+  width="100%" height="620"
+  style="border:0;" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+        <p id="bt-copy-status">Embed code copied!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const root = document.getElementById('bt-block');
+    if (!root || root.dataset.dwInit === '1') return;
+    root.dataset.dwInit='1';
+
+    const table = root.querySelector('table.dw-table');
+    const tb = table ? table.tBodies[0] : null;
+    const scroller = root.querySelector('.dw-scroll');
+    const controls = root.querySelector('.dw-controls');
+    if(!table || !tb || !scroller || !controls) return;
+
+    // Disable horizontal scrolling if 4 or fewer columns
+    if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
+      scroller.classList.add('no-scroll');
+    }
+
+    const field = controls.querySelector('.dw-field');
+    const searchInput = controls.querySelector('.dw-input');
+    const clearBtn = controls.querySelector('.dw-clear');
+    const statusEl = controls.querySelector('.dw-counter'); // hidden
+    const sizeSel = controls.querySelector('#bt-size');
+    const prevBtn = controls.querySelector('[data-page="prev"]');
+    const nextBtn = controls.querySelector('[data-page="next"]');
+    const emptyRow = tb.querySelector('.dw-empty');
+
+    Array.from(tb.rows).forEach((r,i)=>{ if(!r.classList.contains('dw-empty')) r.dataset.idx=i; });
+
+    let pageSize = parseInt(sizeSel.value,10) || 10;  // 0 = All
+    let page = 1;
+    let filter = '';
+
+    const onScrollShadow = ()=> scroller.classList.toggle('scrolled', scroller.scrollTop > 0);
+    scroller.addEventListener('scroll', onScrollShadow); onScrollShadow();
+
+    const heads = Array.from(table.tHead.rows[0].cells);
+    heads.forEach((th,i)=>{
+      th.classList.add('sortable'); th.setAttribute('aria-sort','none'); th.dataset.sort='none'; th.tabIndex=0;
+      const type = th.dataset.type || 'text';
+      const go = ()=> sortBy(i,type,th);
+      th.addEventListener('click',go);
+      th.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+    });
+
+    function textOf(tr,i){ return (tr.children[i].innerText||'').trim(); }
+
+    function sortBy(colIdx, type, th){
+      const rows = Array.from(tb.rows).filter(r=>!r.classList.contains('dw-empty'));
+      const current = th.dataset.sort || 'none';
+      const next = current==='none' ? 'asc' : current==='asc' ? 'desc' : 'none';
+
+      heads.forEach(h=>{
+        h.dataset.sort='none';
+        h.setAttribute('aria-sort','none');
+        h.classList.remove('is-sorted');
+      });
+
+      if(next === 'none'){
+        rows.sort((a,b)=>(+a.dataset.idx)-(+b.dataset.idx));
+        rows.forEach(r=>tb.insertBefore(r, emptyRow));
+        renderPage();
+        return;
+      }
+
+      th.dataset.sort = next;
+      th.setAttribute('aria-sort', next==='asc'?'ascending':'descending');
+
+      const mul = next==='asc'?1:-1;
+      rows.sort((a,b)=>{
+        let v1=textOf(a,colIdx), v2=textOf(b,colIdx);
+        if((type||'text')==='num'){
+          v1=parseFloat(v1.replace(/[^0-9.\-]/g,'')); if(isNaN(v1)) v1=-Infinity;
+          v2=parseFloat(v2.replace(/[^0-9.\-]/g,'')); if(isNaN(v2)) v2=-Infinity;
+        }else{
+          v1=(v1+'').toLowerCase();
+          v2=(v2+'').toLowerCase();
+        }
+        if(v1>v2) return 1*mul;
+        if(v1<v2) return -1*mul;
+        return 0;
+      });
+      rows.forEach(r=>tb.insertBefore(r, emptyRow));
+      th.classList.add('is-sorted');
+      renderPage();
+    }
+
+    function matchesFilter(tr){
+      return !tr.classList.contains('dw-empty') &&
+             tr.innerText.toLowerCase().includes(filter);
+    }
+
+    function renderPage(){
+      const ordered = Array.from(tb.rows).filter(r=>!r.classList.contains('dw-empty'));
+      const visible = ordered.filter(matchesFilter);
+      const total = visible.length;
+
+      ordered.forEach(r=>{ r.style.display='none'; });
+      let shown = [];
+
+      if(total===0){
+        if(emptyRow){
+          emptyRow.style.display='table-row';
+          emptyRow.firstElementChild.colSpan = heads.length;
+        }
+        if(statusEl) statusEl.textContent = "";
+        prevBtn.disabled = nextBtn.disabled = true;
+      }else{
+        if(emptyRow) emptyRow.style.display='none';
+        if(pageSize===0){
+          shown = visible;
+          if(statusEl) statusEl.textContent = "";
+          prevBtn.disabled = nextBtn.disabled = true;
+        }else{
+          const pages = Math.max(1, Math.ceil(total / pageSize));
+          page = Math.min(Math.max(1, page), pages);
+          const start = (page-1)*pageSize;
+          const end = start + pageSize;
+          shown = visible.slice(start,end);
+          if(statusEl) statusEl.textContent = "";
+          prevBtn.disabled = page<=1;
+          nextBtn.disabled = page>=pages;
+        }
+      }
+
+      shown.forEach(r=>{ r.style.display='table-row'; });
+    }
+
+    /* search + clear */
+    const syncClearBtn = ()=> field.classList.toggle('has-value', !!searchInput.value);
+    let t=null;
+    searchInput.addEventListener('input', e=>{
+      syncClearBtn();
+      clearTimeout(t);
+      t=setTimeout(()=>{
+        filter=(e.target.value||'').toLowerCase().trim();
+        page=1;
+        renderPage();
+      },120);
+    });
+    clearBtn.addEventListener('click', ()=>{
+      searchInput.value='';
+      syncClearBtn();
+      filter='';
+      page=1;
+      renderPage();
+      searchInput.focus();
+    });
+    syncClearBtn();
+
+    /* page size + nav */
+    sizeSel.addEventListener('change', e=>{
+      pageSize = parseInt(e.target.value,10) || 0;
+      page=1;
+      renderPage();
+    });
+    prevBtn.addEventListener('click', ()=>{
+      page--;
+      renderPage();
+    });
+    nextBtn.addEventListener('click', ()=>{
+      page++;
+      renderPage();
+    });
+
+    renderPage();
+
+    /* ---- Auto-resize messaging to parent (iframe) ---- */
+    function sendHeightToParent() {
+      try {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({ type: "resize-iframe", height: height, src: window.location.href }, "*");
+      } catch (e) {}
+    }
+    window.addEventListener("load", sendHeightToParent);
+    window.addEventListener("resize", sendHeightToParent);
+    const observer = new MutationObserver(sendHeightToParent);
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+    /* ---- Embed button in footer ---- */
+    const btn     = document.getElementById('bt-embed-btn');
+    const wrapper = document.getElementById('bt-embed-wrapper');
+    const ta      = document.getElementById('bt-embed-code');
+    const status  = document.getElementById('bt-copy-status');
+
+    if (btn && wrapper && ta && status){
+      function openPop(){
+        wrapper.style.display='block';
+        btn.setAttribute('aria-expanded','true');
+        ta.focus();
+        ta.select();
+        try{ document.execCommand('copy'); }catch(e){}
+        status.style.display='block';
+        setTimeout(()=>status.style.display='none', 2500);
+        sendHeightToParent();
+      }
+      function closePop(){
+        wrapper.style.display='none';
+        btn.setAttribute('aria-expanded','false');
+        sendHeightToParent();
+      }
+
+      btn.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const isOpen = wrapper.style.display==='block';
+        if(isOpen) closePop(); else openPop();
+      });
+      document.addEventListener('click', (e)=>{
+        if(wrapper.style.display==='block' && !wrapper.contains(e.target) && !btn.contains(e.target)){
+          closePop();
+        }
+      });
+      document.addEventListener('keydown', (e)=>{
+        if(e.key==='Escape' && wrapper.style.display==='block'){ closePop(); btn.focus(); }
+      });
+    }
+  })();
+  </script>
+
+</section>
+</body>
+</html>
